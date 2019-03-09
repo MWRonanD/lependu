@@ -15,7 +15,8 @@ using namespace std;
 list<int> indexWordsAlready;
 
 
-void Show(string &s) {
+void Show(string s) 
+{
 	cout << s << endl;
 }
 
@@ -27,20 +28,20 @@ void Show(string &s) {
 int main()
 {
 	cout << "Trouvez les " << wordsSize << "  mot et vous viverez !)" << endl;
-	
+	auto temError = error;
 
 	//TODO : Mettre un rdm pour l'ordre des mots
 	for (size_t i = 0; i < wordsSize-1; i++)
 	{
 		auto win = false;
-		auto nbError = errorSize - 1;
+		auto nbError = errorSize -1;
 		char proposition;
-		string wordToFind = words[i];
+		string wordToFind = words[i+1];
 		string str = string(wordToFind.length(), '-');
 		cout << "Mot : " << endl;
 		while (wordToFind != str)
 		{
-			//Show(wordToFind);
+			
 			Show(str);
 			cin >> proposition;
 			proposition = toupper(proposition);
@@ -56,14 +57,14 @@ int main()
 
 			if (hasError)
 			{
-				cout << error[nbError] << endl;
+				cout << temError[nbError] << endl;
 				nbError--;
 			}
 			else
 			{
 				hasError = true;
 			}
-			if (nbError <= 0)
+			if (nbError < 0)
 			{
 				cout << "Raté ! :/ essaye encore ";
 				break;
